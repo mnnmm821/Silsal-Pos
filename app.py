@@ -63,9 +63,11 @@ if not db_url:
     db_url = _sqlite_uri_from_json_config()
 if not db_url:
     db_url = 'sqlite:///erp.db'
-# Heroku/Railway يُرجعون postgres:// — نحوّله لـ postgresql://
+# Heroku/Railway يُرجعون postgres:// — نحوّله لـ postgresql+psycopg://
 if db_url.startswith('postgres://'):
-    db_url = db_url.replace('postgres://', 'postgresql://', 1)
+    db_url = db_url.replace('postgres://', 'postgresql+psycopg://', 1)
+elif db_url.startswith('postgresql://') and '+' not in db_url.split('://')[0]:
+    db_url = db_url.replace('postgresql://', 'postgresql+psycopg://', 1)
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
