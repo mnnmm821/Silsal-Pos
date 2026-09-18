@@ -1,3 +1,8 @@
+# ============================================================
+# ProERP — Python Requirements (مثبّتة بإصدارات محددة)
+# Python 3.10–3.14 ✔  (مع 3.14: ثبّت SQLAlchemy 2.0.49+ لتفادي AssertionError في TypingOnly)
+# ============================================================
+
 # Core Framework
 Flask==3.1.3
 Werkzeug==3.1.7
@@ -16,14 +21,10 @@ WTForms==3.2.1
 # Environment variables
 python-dotenv==1.2.2
 
-# Production WSGI server
-gunicorn==23.0.0
+# Production WSGI server (على Linux/macOS؛ على Windows اختياري)
+gunicorn==25.3.0
 
-# QR codes
+# QR codes — بطاقات حضور الموظفين
 qrcode==8.2
 
-# Excel import
-openpyxl==3.1.5
-
-# PostgreSQL driver - متوافق مع Python 3.13
-psycopg[binary]==3.2.3
+# PostgreSQL: لا يُثبّت هنا — راجع requirements-postgres.txt (قد يفشل على Python 3.14 بدون عجلة جاهزة)
