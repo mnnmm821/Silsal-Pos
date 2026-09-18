@@ -546,7 +546,19 @@ PERMISSION_KEYS = [
     ('products', 'الأصناف'),
     ('product_add', 'إضافة صنف جديد'),
     ('categories', 'التصنيفات'),
-    ('reports', 'التقارير'),
+    ('reports', 'التقارير - عام'),
+    ('reports_dashboard', 'تقرير/تحليلات لوحة التحكم'),
+    ('report_sales', 'تقرير المبيعات'),
+    ('report_purchases', 'تقرير المشتريات'),
+    ('report_inventory', 'تقرير المخزون'),
+    ('report_customers', 'تقرير العملاء'),
+    ('report_suppliers', 'تقرير الموردين'),
+    ('report_expenses', 'تقرير المصاريف'),
+    ('report_profit', 'تقرير الأرباح والخسائر'),
+    ('report_low_stock', 'تقرير الأصناف منخفضة المخزون'),
+    ('report_stock_adjustments', 'تقرير تسويات المخزون'),
+    ('reports_export', 'تصدير التقارير'),
+    ('reports_print', 'طباعة التقارير'),
     ('settings', 'الإعدادات (فروع / مخازن / ضريبة البيع)'),
     ('settings_branding', 'إعدادات النظام'),
     ('settings_database', 'إدارة قاعدة البيانات'),
@@ -676,7 +688,10 @@ def default_role_permission_set(role: str) -> set:
     if role == 'user':
         return {
             'dashboard', 'sales', 'purchases', 'returns', 'inventory', 'transfers',
-            'customers', 'suppliers', 'expenses', 'products', 'product_add', 'categories', 'reports',
+            'customers', 'suppliers', 'expenses', 'products', 'product_add', 'categories', 
+            'reports', 'report_sales', 'report_purchases', 'report_inventory', 'report_customers',
+            'report_suppliers', 'report_expenses', 'report_profit', 'report_low_stock',
+            'report_stock_adjustments', 'reports_dashboard', 'reports_export', 'reports_print',
         }
     if role in ('hr_manager', 'hr_officer', 'payroll_officer', 'department_manager', 'employee'):
         return {'dashboard'}
@@ -1030,6 +1045,17 @@ def path_required_permission(path: str):
         ('/products', 'products'),
         ('/sales', 'sales'),
         ('/purchases', 'purchases'),
+        # صلاحيات التقارير بالتفصيل
+        ('/reports/dashboard', 'reports_dashboard'),
+        ('/reports/sales', 'report_sales'),
+        ('/reports/purchases', 'report_purchases'),
+        ('/reports/inventory', 'report_inventory'),
+        ('/reports/customers', 'report_customers'),
+        ('/reports/suppliers', 'report_suppliers'),
+        ('/reports/expenses', 'report_expenses'),
+        ('/reports/profit', 'report_profit'),
+        ('/reports/low-stock', 'report_low_stock'),
+        ('/reports/stock-adjustments', 'report_stock_adjustments'),
         ('/reports', 'reports'),
         ('/about', 'dashboard'),
     ]
