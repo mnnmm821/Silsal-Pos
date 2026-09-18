@@ -3,4 +3,4 @@
 #   pip install "psycopg[binary]"
 # ثم في .env استخدم: postgresql+psycopg://user:pass@host/db
 #
-psycopg2-binary==2.9.10
+psycopg2-binary==2.9.9
